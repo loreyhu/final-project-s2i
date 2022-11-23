@@ -1,0 +1,50 @@
+/* line chart */
+
+.chart{
+    width: 1200px;
+
+    padding-bottom: 100px;
+}
+
+.todayValue{
+    margin-top: 30px;
+    text-align: center;
+    color: white;
+
+    font-size: 25px;
+}
+
+.todayValue > span {
+    font-weight: 300;
+}
+
+/* tablets */
+
+@media (min-width: 481px) and (max-width: 1280px) {
+
+    .chart{
+        width: 90%;
+        padding-bottom: 60px;
+    }
+
+    .todayValue{
+        font-size: 20px;
+    }
+   
+
+}
+
+/* mobile */
+
+@media (max-width: 480px) {
+
+    .chart{
+        width: 90%;
+        padding-bottom: 60px;
+    }
+
+    .todayValue{
+        font-size: 20px;
+    }
+   
+}

@@ -1,0 +1,13 @@
+.chartPage{
+    width: 100%;
+    height: fit-content;
+
+    background-color: #33415C;
+}
+
+.chartContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+

@@ -1,0 +1,114 @@
+/* Wallpaper */
+
+.headerContainer{
+    width: 100%;
+    height: 60vh;
+
+    background-image: url("../../images/wallpaper.jpg");
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.502);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* content container (title, paragraph */
+
+.header{
+    width: 100%;
+    height: 100%;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    padding-left: 100px;
+}
+
+
+.title{
+    font-size: 60px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.line{
+    height: 1px;
+    width: 500px;
+
+    background-color: white;
+
+    margin: 20px 0;
+    border: none;
+}
+
+.paragraph{
+    width: 700px;
+
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 130%;
+    letter-spacing: 1px;
+}
+
+/* tablets */
+
+@media (min-width: 481px) and (max-width: 1280px) {
+
+    .headerContainer{
+        height: 80vh;
+    }
+
+    .header{
+        align-items: center;
+        
+        padding-left: 0;
+    }
+
+    .title{
+        font-size: 60px;
+    }
+    
+    .line{
+        width: 85%;
+    }
+    
+    .paragraph{
+        width: 85%;
+
+        font-size: 20px;
+    }
+    
+}
+
+/* mobile */
+
+@media (max-width: 480px) {
+
+    .headerContainer{
+        height: 80vh;
+    }
+
+    .header{
+        align-items: center;
+        
+        padding-left: 0;
+    }
+
+    .title{
+        font-size: 40px;
+    }
+    
+    .line{
+        width: 85%;
+    }
+    
+    .paragraph{
+        width: 85%;
+
+        font-size: 16px;
+    }
+   
+}
