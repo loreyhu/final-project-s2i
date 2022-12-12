@@ -5,7 +5,18 @@
     background-color: #33415C;
 }
 
+.loadingContainer{
+    height: 40vh;
+
+    margin-top: 100px;
+
+    display: flex;
+    justify-content: center;
+}
+
 .chartContainer{
+    height: fit-content;
+
     display: flex;
     justify-content: center;
     margin-top: 50px;

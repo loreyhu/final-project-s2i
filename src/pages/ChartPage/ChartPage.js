@@ -1,41 +1,51 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import ChartPageCSS from "./ChartPage.module.css"
+import ChartPageCSS from "./ChartPage.module.css";
 
-// Components
+// Component
 
-import LineChart from '../../components/LineChart/LineChart'
-import Header from '../../components/Header/Header'  
+import Header from "../../components/Header/Header";
 
-import {clientAPI} from "../../components/clientAPI/clientAPI"
+// atoms
+
+import LineChart from "../../components/atoms/LineChart/LineChart";
+import LoadingOval from "../../components/atoms/LoadingOval/LoadingOval";
+
+// custom hook
+
+import useAxios from "../../components/clientAPI/useAxios";
 
 const ChartPage = () => {
+  const { id } = useParams();
+  const [data, setData] = useState([]);
 
-  const [data, setData] = useState([])
-
-  const {id} = useParams()
-
-  //api call using clientAPI
-
-  const APICall = async () => {
-     const data = await clientAPI(id)
-      setData(data.data.result || data.data.co2 || data.data.methane || data.data.nitrous || data.data.arcticData)
-  }
+  const { res, loading } = useAxios(id);
 
   useEffect(() => {
-    APICall()
+    if (res !== null) {
+      setData(
+        res.result || res.co2 || res.methane || res.nitrous || res.arcticData
+      );
+    }
     // eslint-disable-next-line
-  }, [id])
+  }, [res]);
 
   return (
     <div className={ChartPageCSS.chartPage}>
-      <Header id={id}/>
-      <div className={ChartPageCSS.chartContainer}>
-        <LineChart id={id} data={data} key={id}/>
-      </div>
-    </div>
-  )
-}
+      <Header id={id} />
 
-export default ChartPage
+      {loading ? (
+        <div className={ChartPageCSS.loadingContainer}>
+          <LoadingOval />
+        </div>
+      ) : (
+        <div className={ChartPageCSS.chartContainer}>
+          <LineChart id={id} data={data} key={id} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ChartPage;

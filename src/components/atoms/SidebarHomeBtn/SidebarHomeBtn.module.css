@@ -1,0 +1,25 @@
+.homeBtn {
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: white;
+}
+
+/* tablets */
+
+@media (min-width: 481px) and (max-width: 1280px) {
+    
+    .homeBtn {
+        font-size: 25px;
+    }
+
+}
+
+/* mobile */
+
+@media (max-width: 480px) {
+
+    .homeBtn {
+        font-size: 18px;
+    }
+    
+}
