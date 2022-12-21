@@ -2,23 +2,41 @@ import React, { useState } from "react";
 
 import SidebarCSS from "./Sidebar.module.css";
 
-// atoms
+// components
 
-import MenuButton from "../atoms/MenuButton/MenuButton";
-import SidebarHomeBtn from "../atoms/SidebarHomeBtn/SidebarHomeBtn";
-import SidebarUL from "../atoms/SidebarUL/SidebarUL";
+import Hamburger from "../Hamburger/Hamburger";
+import SidebarLink from "../atoms/SidebarLink/SidebarLink";
 
 const Sidebar = () => {
   const [isActive, setIsActive] = useState(false);
 
   return (
     <div className={SidebarCSS.container}>
-      <MenuButton isActive={isActive} setIsActive={setIsActive} />
+      <Hamburger isActive={isActive} setIsActive={setIsActive} />
       {isActive && (
         <div className={SidebarCSS.sidebar}>
-          <SidebarHomeBtn />
+          <SidebarLink destination={"/"} value={"Back to Home"} />
           <h3 className={SidebarCSS.listTitle}>DATA</h3>
-          <SidebarUL />
+          <ul className={SidebarCSS.dataList}>
+            <li>
+              <SidebarLink
+                destination={"/data/temperature"}
+                value={"Temperature"}
+              />
+            </li>
+            <li>
+              <SidebarLink destination={"/data/co2"} value={"CO2"} />
+            </li>
+            <li>
+              <SidebarLink destination={"/data/methane"} value={"Methane"} />
+            </li>
+            <li>
+              <SidebarLink destination={"/data/nitrous-oxide"} value={"NO2"} />
+            </li>
+            <li>
+              <SidebarLink destination={"/data/arctic"} value={"Polar Ice"} />
+            </li>
+          </ul>
         </div>
       )}
     </div>
