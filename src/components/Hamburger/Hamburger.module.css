@@ -23,15 +23,15 @@
     border: none;
 }
 
-.activeBtn{
+.active{
     right: 350px;
 }
 
-.activeBtn .hamburgerLine:first-of-type{
+.active .hamburgerLine:first-of-type{
     transform: rotate(45deg);
     margin-bottom: -5px;
 }
-.activeBtn .hamburgerLine:last-of-type{
+.active .hamburgerLine:last-of-type{
     transform: rotate(-45deg);
 }
 
@@ -51,7 +51,7 @@
         z-index: 10000;
     }
     
-    .activeBtn{
+    .active{
         right: 40px;
         top: 70px;
 
@@ -74,7 +74,7 @@
         z-index: 10000;
     }
     
-    .activeBtn{
+    .active{
         right: 30px;
         top: 45px;
 

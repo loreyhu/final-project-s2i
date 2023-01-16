@@ -1,48 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { Suspense } from "react";
 import { Oval } from "react-loading-icons";
-import { useParams } from "react-router-dom";
+import { useLoaderData, Await, defer } from "react-router-dom";
 
 import ChartPageCSS from "./ChartPage.module.css";
 
-// Component
+// Components
 
 import Header from "../../components/Header/Header";
 import LineChart from "../../components/LineChart/LineChart";
 
-// custom hook
+// api call
 
-import useAxios from "../../hooks/clientAPI/useAxios";
+import getData from "../../clientAPI/getData";
 
 const ChartPage = () => {
-  const { id } = useParams();
-  const [data, setData] = useState([]);
-
-  const { res, loading } = useAxios(id);
-
-  useEffect(() => {
-    if (res !== null) {
-      setData(
-        res.result || res.co2 || res.methane || res.nitrous || res.arcticData
-      );
-    }
-    // eslint-disable-next-line
-  }, [res]);
+  const { id, res } = useLoaderData();
 
   return (
     <div className={ChartPageCSS.chartPage}>
       <Header id={id} />
 
-      {loading ? (
-        <div className={ChartPageCSS.loadingContainer}>
-          <Oval stroke="#7CBDE1" strokeOpacity={1} />;
-        </div>
-      ) : (
-        <div className={ChartPageCSS.chartContainer}>
-          <LineChart id={id} data={data} key={id} />
-        </div>
-      )}
+      <div className={ChartPageCSS.chartContainer}>
+        <Suspense fallback={<Oval stroke="#7CBDE1" strokeOpacity={1} />}>
+          <Await
+            resolve={res}
+            errorElement={
+              <h2 className={ChartPageCSS.error}>Something went wrong</h2>
+            }
+          >
+            {(res) => (
+              <LineChart
+                id={id}
+                data={
+                  res.data.result ||
+                  res.data.co2 ||
+                  res.data.methane ||
+                  res.data.nitrous ||
+                  res.data.arcticData
+                }
+                key={id}
+              />
+            )}
+          </Await>
+        </Suspense>
+      </div>
     </div>
   );
+};
+
+export const loader = async ({ params }) => {
+  return defer({ id: params.id, res: getData(params.id) });
 };
 
 export default ChartPage;

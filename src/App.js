@@ -6,7 +6,7 @@ import "./App.css";
 //Components
 
 import Home from "./pages/Home/Home";
-import ChartPage from "./pages/ChartPage/ChartPage";
+import ChartPage, { loader as dataLoader } from "./pages/ChartPage/ChartPage";
 import Error from "./components/Error/Error";
 
 const router = createBrowserRouter([
@@ -17,9 +17,11 @@ const router = createBrowserRouter([
   {
     element: <ChartPage />,
     path: "/data/:id",
+    loader: dataLoader,
+    errorElement: <Error err="Something went wrong" />,
   },
   {
-    element: <Error />,
+    element: <Error err="This page doesn't exist" />,
     path: "*",
   },
 ]);
